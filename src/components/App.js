@@ -1,7 +1,12 @@
 import React from "react";
+import MuseumItems from "./MuseumItems";
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div>
+      <MuseumItems />
+    </div>
+  );
 };
 
 export default App;
