@@ -27,6 +27,30 @@ class MuseumItems extends React.Component {
     );
   }
 
+  calculateHourString(hour) {
+    var hourString = "";
+    if (hour > 12) {
+      hourString = hour - 12;
+      hourString = hourString + "PM";
+    } else if (hour === 12) {
+      hourString = "12PM";
+    } else {
+      hourString = hour + "AM";
+    }
+    return hourString;
+  }
+  renderActiveHours(activeHours) {
+    var startingHour = activeHours[0];
+    var endingHour = activeHours[activeHours.length - 1];
+
+    return (
+      <React.Fragment>
+        {this.calculateHourString(startingHour)} -{" "}
+        {this.calculateHourString(endingHour)}
+      </React.Fragment>
+    );
+  }
+
   renderList() {
     return fish.map((item) => {
       return (
@@ -41,9 +65,11 @@ class MuseumItems extends React.Component {
                 {this.renderMonthContainer(item.northMonths)}
               </div>
 
-              <div className="ui small header">Active Hours:</div>
+              <div className="ui small header">
+                Active Hours: {this.renderActiveHours(item.activeHours)}
+              </div>
 
-              <div className="ui small header">Found in : {item.location}</div>
+              <div className="ui small header">Found in: {item.location}</div>
             </div>
           </div>
         </div>
