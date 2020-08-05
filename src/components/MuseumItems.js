@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import LazyLoad from "react-lazy-load";
 import undersea from "../data/undersea.js";
 import fish from "../data/fish.js";
 import bugs from "../data/bugs.js";
 import months from "../data/months.js";
 import Loading from "./Loading";
+import { fetchMuseumData } from "../actions";
 
 class MuseumItems extends React.Component {
   renderMonths(itemActiveMonths) {
@@ -70,12 +72,22 @@ class MuseumItems extends React.Component {
     switch (type) {
       case "fish":
         data = fish;
+
+        if (this.props.filters.fishFilter !== true) {
+          return "";
+        }
         break;
       case "bugs":
         data = bugs;
+        if (this.props.filters.bugsFilter !== true) {
+          return "";
+        }
         break;
       case "undersea":
         data = undersea;
+        if (this.props.filters.underseaFilter !== true) {
+          return "";
+        }
         break;
       default:
         return <div className="content">An error has occurred</div>;
@@ -111,10 +123,22 @@ class MuseumItems extends React.Component {
   render() {
     return (
       <div className="ui center aligned container">
-        <div className="ui cards">{this.renderList("bugs")}</div>
+        <div className="ui cards">
+          {this.renderList("fish")}
+          {this.renderList("bugs")}
+          {this.renderList("undersea")}
+        </div>
       </div>
     );
   }
 }
 
-export default MuseumItems;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    filters: state.filters,
+  };
+};
+export default connect(mapStateToProps, {
+  fetchMuseumData,
+})(MuseumItems);
