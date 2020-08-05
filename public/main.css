@@ -1,7 +1,7 @@
 .main.container {
   margin-top: 7em;
 }
-.ui.cards > .card > .image > img {
+.ui.cards > .card > .image img {
   width: auto;
   height: 20vh;
   margin: auto;

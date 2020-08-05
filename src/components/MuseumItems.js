@@ -1,10 +1,10 @@
 import React from "react";
+import LazyLoad from "react-lazy-load";
 import undersea from "../data/undersea.js";
 import fish from "../data/fish.js";
 import bugs from "../data/bugs.js";
 import months from "../data/months.js";
-// import LazyLoad from "react-lazyload";
-// import Loading from "./Loading";
+import Loading from "./Loading";
 
 class MuseumItems extends React.Component {
   renderMonths(itemActiveMonths) {
@@ -81,11 +81,12 @@ class MuseumItems extends React.Component {
         return <div className="content">An error has occurred</div>;
     }
     return data.map((item) => {
-      console.log(item.name);
       return (
         <div className="card" key={item.id}>
           <div className={`image ${type}`}>
-            <img alt={item.name} src={`/images/${type}/${item.image}`} />
+            <LazyLoad key={item.id} placeholder={<Loading />}>
+              <img alt={item.name} src={`/images/${type}/${item.image}`} />
+            </LazyLoad>
           </div>
           <div className="content">
             <div className="header">{item.name}</div>
