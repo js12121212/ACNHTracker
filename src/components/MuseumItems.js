@@ -1,5 +1,7 @@
 import React from "react";
+import undersea from "../data/undersea.js";
 import fish from "../data/fish.js";
+import bugs from "../data/bugs.js";
 import months from "../data/months.js";
 // import LazyLoad from "react-lazyload";
 // import Loading from "./Loading";
@@ -9,6 +11,7 @@ class MuseumItems extends React.Component {
     return months.map((month) => {
       return (
         <div
+          key={month.id}
           className={`column ${
             itemActiveMonths.indexOf(month.id) > -1 ? "green" : ""
           }`}
@@ -43,20 +46,46 @@ class MuseumItems extends React.Component {
     var startingHour = activeHours[0];
     var endingHour = activeHours[activeHours.length - 1];
 
-    return (
-      <React.Fragment>
-        {this.calculateHourString(startingHour)} -{" "}
-        {this.calculateHourString(endingHour)}
-      </React.Fragment>
-    );
+    if (Array.isArray(startingHour)) {
+      return (
+        <React.Fragment>
+          {this.renderActiveHours(startingHour)}
+          {this.renderActiveHours(endingHour)}
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <div className="ui small header">
+            Active hours: {this.calculateHourString(startingHour)} -{" "}
+            {this.calculateHourString(endingHour)}
+          </div>
+        </React.Fragment>
+      );
+    }
   }
 
-  renderList() {
-    return fish.map((item) => {
+  renderList(type) {
+    let data = {};
+    switch (type) {
+      case "fish":
+        data = fish;
+        break;
+      case "bugs":
+        data = bugs;
+        break;
+      case "undersea":
+        data = undersea;
+        break;
+      default:
+        return <div className="content">An error has occurred</div>;
+    }
+    return data.map((item) => {
+      console.log(item.name);
       return (
         <div className="card" key={item.id}>
-          <div className="image">
-            <img alt={item.name} src={`/images/fish/${item.image}`} />
+          <div className={`image ${type}`}>
+            <img alt={item.name} src={`/images/${type}/${item.image}`} />
           </div>
           <div className="content">
             <div className="header">{item.name}</div>
@@ -65,12 +94,13 @@ class MuseumItems extends React.Component {
                 {this.renderMonthContainer(item.northMonths)}
               </div>
 
-              <div className="ui small header">
-                Active Hours: {this.renderActiveHours(item.activeHours)}
-              </div>
+              {this.renderActiveHours(item.activeHours)}
 
               <div className="ui small header">Found in: {item.location}</div>
             </div>
+          </div>
+          <div className="extra content">
+            <div className="small header">Price: {item.price}</div>
           </div>
         </div>
       );
@@ -79,8 +109,8 @@ class MuseumItems extends React.Component {
 
   render() {
     return (
-      <div className="ui container">
-        <div className="ui cards">{this.renderList()}</div>
+      <div className="ui center aligned container">
+        <div className="ui cards">{this.renderList("bugs")}</div>
       </div>
     );
   }
