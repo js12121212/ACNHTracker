@@ -122,7 +122,7 @@ class Filters extends React.Component {
         <select
           name="hourSelect"
           className="ui compact selection dropdown"
-          value={this.props.hour}
+          value={this.props.filters.hour}
           onChange={this.onHourChange}
         >
           {hourOptions}
@@ -130,7 +130,7 @@ class Filters extends React.Component {
         <select
           name="monthSelect"
           className="ui compact selection dropdown"
-          value={this.props.month}
+          value={this.props.filters.month}
           onChange={this.onMonthChange}
         >
           {months.map((month) => {
