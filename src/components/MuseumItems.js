@@ -4,7 +4,6 @@ import MuseumItem from "./MuseumItem";
 import undersea from "../data/undersea.js";
 import fish from "../data/fish.js";
 import bugs from "../data/bugs.js";
-import { fetchMuseumData } from "../actions";
 
 class MuseumItems extends React.Component {
   renderList(type) {
@@ -33,14 +32,7 @@ class MuseumItems extends React.Component {
         return <div className="content">An error has occurred</div>;
     }
     return data.map((item) => {
-      return (
-        <MuseumItem
-          item={item}
-          type={type}
-          hemisphere={this.props.filters.hemisphereFilter}
-          key={item.id}
-        />
-      );
+      return <MuseumItem item={item} type={type} key={item.id} />;
     });
   }
 
@@ -62,6 +54,4 @@ const mapStateToProps = (state) => {
     filters: state.filters,
   };
 };
-export default connect(mapStateToProps, {
-  fetchMuseumData,
-})(MuseumItems);
+export default connect(mapStateToProps, null)(MuseumItems);

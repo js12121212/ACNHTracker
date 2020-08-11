@@ -1,7 +1,9 @@
 import React from "react";
 import LazyLoad from "react-lazy-load";
+import { connect } from "react-redux";
 import Loading from "./Loading";
 import MonthDisplay from "./MonthDisplay";
+import { fetchMuseumData } from "../actions";
 
 class MuseumItem extends React.Component {
   calculateHourString(hour, isEnding = false) {
@@ -48,7 +50,7 @@ class MuseumItem extends React.Component {
     const item = this.props.item;
     let hemisphere = item.northMonths;
 
-    if (this.props.hemisphere === "South") {
+    if (this.props.filters.hemisphereFilter === "South") {
       hemisphere = item.southMonths;
     }
 
@@ -90,4 +92,11 @@ class MuseumItem extends React.Component {
   }
 }
 
-export default MuseumItem;
+const mapStateToProps = (state) => {
+  return {
+    filters: state.filters,
+  };
+};
+export default connect(mapStateToProps, {
+  fetchMuseumData,
+})(MuseumItem);
