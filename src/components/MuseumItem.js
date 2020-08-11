@@ -63,7 +63,6 @@ class MuseumItem extends React.Component {
 
   render() {
     const item = this.props.item;
-
     return (
       <div className="card" key={item.id}>
         <div className={`image ${this.props.type}`}>

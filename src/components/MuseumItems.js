@@ -32,8 +32,34 @@ class MuseumItems extends React.Component {
         return <div className="content">An error has occurred</div>;
     }
     return data.map((item) => {
+      const { timeFilter, month, hour } = this.props.filters;
+      if (timeFilter !== "All") {
+        if (this.isActiveAtTime(item, month, hour)) {
+          return <MuseumItem item={item} type={type} key={item.id} />;
+        } else {
+          return false;
+        }
+      }
       return <MuseumItem item={item} type={type} key={item.id} />;
     });
+  }
+
+  isActiveAtTime(item = null, month = 1, hour = 0) {
+    if (item.id) {
+      //Check hour
+      if (item.activeHours.indexOf(hour) === -1) {
+        return false;
+      }
+      //Check month for this hemisphere
+      let hemisphereMonths = item.northMonths;
+      if (this.props.filters.hemisphereFilter === "South") {
+        hemisphereMonths = item.southMonths;
+      }
+      if (hemisphereMonths.indexOf(month) !== -1) {
+        return true;
+      }
+    }
+    return false;
   }
 
   render() {
