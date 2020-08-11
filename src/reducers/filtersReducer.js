@@ -1,4 +1,3 @@
-//import _ from "lodash";
 import {
   SET_FISH_FILTER,
   SET_BUGS_FILTER,

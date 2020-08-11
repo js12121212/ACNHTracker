@@ -33,7 +33,14 @@ class MuseumItems extends React.Component {
         return <div className="content">An error has occurred</div>;
     }
     return data.map((item) => {
-      return <MuseumItem item={item} type={type} key={item.id} />;
+      return (
+        <MuseumItem
+          item={item}
+          type={type}
+          hemisphere={this.props.filters.hemisphereFilter}
+          key={item.id}
+        />
+      );
     });
   }
 

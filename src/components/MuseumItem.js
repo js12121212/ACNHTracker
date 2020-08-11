@@ -44,9 +44,24 @@ class MuseumItem extends React.Component {
     }
   }
 
+  renderMonths() {
+    const item = this.props.item;
+    let hemisphere = item.northMonths;
+
+    if (this.props.hemisphere === "South") {
+      hemisphere = item.southMonths;
+    }
+
+    return (
+      <div className="ui segment">
+        <MonthDisplay months={hemisphere} />
+      </div>
+    );
+  }
+
   render() {
     const item = this.props.item;
-    console.log(item);
+
     return (
       <div className="card" key={item.id}>
         <div className={`image ${this.props.type}`}>
@@ -60,9 +75,7 @@ class MuseumItem extends React.Component {
         <div className="content">
           <div className="header">{item.name}</div>
           <div className="description">
-            <div className="ui segment">
-              <MonthDisplay months={item.northMonths} />
-            </div>
+            {this.renderMonths()}
 
             {this.renderActiveHours(item.activeHours)}
 
