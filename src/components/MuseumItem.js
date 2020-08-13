@@ -69,10 +69,10 @@ class MuseumItem extends React.Component {
   }
 
   onClick(item, e) {
-    let value = false;
+    let value = true;
     const id = item.id;
     if (this.props.museumItems[id]) {
-      value = true;
+      value = false;
     }
     this.saveCookie(id, value);
     this.props.setMuseumData(id, value);
