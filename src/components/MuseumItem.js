@@ -101,7 +101,7 @@ class MuseumItem extends React.Component {
           <LazyLoad key={item.id} placeholder={<Loading />}>
             <img
               alt={item.name}
-              src={`/images/${this.props.type}/${item.image}`}
+              src={`${process.env.PUBLIC_URL}/images/${this.props.type}/${item.image}`}
             />
           </LazyLoad>
         </div>
