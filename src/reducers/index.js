@@ -4,5 +4,5 @@ import museumDataReducer from "./museumDataReducer";
 
 export default combineReducers({
   filters: filtersReducer,
-  museumData: museumDataReducer,
+  museumItems: museumDataReducer,
 });

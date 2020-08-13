@@ -5,6 +5,7 @@
   width: auto;
   height: 20vh;
   margin: auto;
+  max-width: 100%;
 }
 .ui.cards > .card > .image.fish {
   background: rgba(0, 0, 255, 0.2);

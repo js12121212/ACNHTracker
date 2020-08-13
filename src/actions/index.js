@@ -7,8 +7,7 @@ import {
   SET_HOUR,
   SET_MONTH,
   FETCH_MUSEUM_DATA,
-  ADD_TO_MUSEUM_DATA,
-  REMOVE_FROM_MUSEUM_DATA,
+  SET_MUSEUM_DATA,
 } from "./types";
 
 export const setFishFilter = () => {
@@ -43,9 +42,12 @@ export const fetchMuseumData = () => {
   return { type: FETCH_MUSEUM_DATA };
 };
 
-export const addToMuseumData = () => {
-  return { type: ADD_TO_MUSEUM_DATA };
-};
-export const removeFromMuseumData = () => {
-  return { type: REMOVE_FROM_MUSEUM_DATA };
+export const setMuseumData = (id, value) => {
+  //const [cookies, setCookie] = useCookies(["museumItems"]);
+
+  var museumItem = !value;
+
+  // cookies.set("museumItems", museumItems, { path: "/ " });
+  const payload = { id: id, value: museumItem };
+  return { type: SET_MUSEUM_DATA, payload: payload };
 };
