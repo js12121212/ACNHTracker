@@ -1,0 +1,21 @@
+.main.container {
+  margin-top: 7em;
+}
+.ui.cards > .card > .image img {
+  width: auto;
+  height: 20vh;
+  margin: auto;
+  max-width: 100%;
+}
+.ui.cards > .card > .image.fish {
+  background: rgba(0, 0, 255, 0.2);
+}
+.ui.cards > .card > .image.bugs {
+  background: rgba(0, 255, 0, 0.2);
+}
+.ui.cards > .card > .image.undersea {
+  background: rgba(255, 0, 0, 0.2);
+}
+.ui.cards > .card > .image.owl {
+  background: rgba(245, 203, 79, 0.85);
+}

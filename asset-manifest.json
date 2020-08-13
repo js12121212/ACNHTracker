@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/ACNHTracker/static/js/main.9ad6e20a.chunk.js",
+    "main.js.map": "/ACNHTracker/static/js/main.9ad6e20a.chunk.js.map",
+    "runtime-main.js": "/ACNHTracker/static/js/runtime-main.aa61a72b.js",
+    "runtime-main.js.map": "/ACNHTracker/static/js/runtime-main.aa61a72b.js.map",
+    "static/js/2.0edd2f95.chunk.js": "/ACNHTracker/static/js/2.0edd2f95.chunk.js",
+    "static/js/2.0edd2f95.chunk.js.map": "/ACNHTracker/static/js/2.0edd2f95.chunk.js.map",
+    "index.html": "/ACNHTracker/index.html",
+    "precache-manifest.c75696b256d66a24e2df9b1f7cb3531a.js": "/ACNHTracker/precache-manifest.c75696b256d66a24e2df9b1f7cb3531a.js",
+    "service-worker.js": "/ACNHTracker/service-worker.js",
+    "static/js/2.0edd2f95.chunk.js.LICENSE.txt": "/ACNHTracker/static/js/2.0edd2f95.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aa61a72b.js",
+    "static/js/2.0edd2f95.chunk.js",
+    "static/js/main.9ad6e20a.chunk.js"
+  ]
+}
