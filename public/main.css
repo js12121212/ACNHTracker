@@ -16,3 +16,6 @@
 .ui.cards > .card > .image.undersea {
   background: rgba(255, 0, 0, 0.2);
 }
+.ui.cards > .card > .image.owl {
+  background: rgba(245, 203, 79, 0.85);
+}
