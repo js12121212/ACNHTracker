@@ -15,7 +15,11 @@ class MuseumItems extends React.Component {
 
   componentDidMount() {
     const { cookies } = this.props;
-    const cookieItems = cookies.get("museumItems");
+    let cookieItems = cookies.get("museumItems");
+
+    if (cookieItems === undefined) {
+      cookieItems = {};
+    }
     this.props.fetchMuseumData(cookieItems);
   }
 
