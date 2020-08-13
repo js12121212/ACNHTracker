@@ -43,7 +43,6 @@ export const fetchMuseumData = (cookieMuseumItems) => {
 };
 
 export const setMuseumData = (id, value) => {
-  var museumItem = !value;
-  const payload = { id: id, value: museumItem };
+  const payload = { id: id, value: value };
   return { type: SET_MUSEUM_DATA, payload: payload };
 };

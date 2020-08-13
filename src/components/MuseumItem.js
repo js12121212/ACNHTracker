@@ -75,7 +75,7 @@ class MuseumItem extends React.Component {
       value = false;
     }
     this.saveCookie(id, value);
-    this.props.setMuseumData(id, !value);
+    this.props.setMuseumData(id, value);
     return true;
   }
 
