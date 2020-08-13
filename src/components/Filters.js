@@ -30,38 +30,38 @@ class Filters extends React.Component {
     }
     return (
       <div className="ui container">
-        <button
-          className={`ui button ${
-            this.props.filters.fishFilter ? "positive" : "negative"
-          }`}
-          onClick={() => {
-            this.props.setFishFilter();
-          }}
-        >
-          Fish
-        </button>
-        <button
-          className={`ui button ${
-            this.props.filters.bugsFilter ? "positive" : "negative"
-          }`}
-          onClick={() => {
-            this.props.setBugsFilter();
-          }}
-        >
-          Bugs
-        </button>
-        <button
-          className={`ui button ${
-            this.props.filters.underseaFilter ? "positive" : "negative"
-          }`}
-          onClick={() => {
-            this.props.setUnderseaFilter();
-          }}
-        >
-          UW
-        </button>
-
         <div className="ui buttons">
+          <button
+            className={`ui button ${
+              this.props.filters.fishFilter ? "positive" : "negative"
+            }`}
+            onClick={() => {
+              this.props.setFishFilter();
+            }}
+          >
+            Fish
+          </button>
+          <button
+            className={`ui button ${
+              this.props.filters.bugsFilter ? "positive" : "negative"
+            }`}
+            onClick={() => {
+              this.props.setBugsFilter();
+            }}
+          >
+            Bugs
+          </button>
+          <button
+            className={`ui button ${
+              this.props.filters.underseaFilter ? "positive" : "negative"
+            }`}
+            onClick={() => {
+              this.props.setUnderseaFilter();
+            }}
+          >
+            UW
+          </button>
+
           <button
             className={`ui button ${
               this.props.filters.hemisphereFilter === "North" ? "positive" : ""
@@ -118,29 +118,30 @@ class Filters extends React.Component {
           >
             Time
           </button>
+
+          <select
+            name="hourSelect"
+            className="ui compact selection dropdown button"
+            value={this.props.filters.hour}
+            onChange={this.onHourChange}
+          >
+            {hourOptions}
+          </select>
+          <select
+            name="monthSelect"
+            className="ui compact selection dropdown button"
+            value={this.props.filters.month}
+            onChange={this.onMonthChange}
+          >
+            {months.map((month) => {
+              return (
+                <option value={month.id} key={month.id}>
+                  {month.name}
+                </option>
+              );
+            })}
+          </select>
         </div>
-        <select
-          name="hourSelect"
-          className="ui compact selection dropdown"
-          value={this.props.filters.hour}
-          onChange={this.onHourChange}
-        >
-          {hourOptions}
-        </select>
-        <select
-          name="monthSelect"
-          className="ui compact selection dropdown"
-          value={this.props.filters.month}
-          onChange={this.onMonthChange}
-        >
-          {months.map((month) => {
-            return (
-              <option value={month.id} key={month.id}>
-                {month.name}
-              </option>
-            );
-          })}
-        </select>
       </div>
     );
   }

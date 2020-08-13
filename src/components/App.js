@@ -5,7 +5,7 @@ import Filters from "./Filters";
 const App = () => {
   return (
     <div>
-      <div className="ui fixed inverted menu">
+      <div className="ui fixed inverted stackable menu">
         <Filters />
       </div>
       <div className="ui main container">
