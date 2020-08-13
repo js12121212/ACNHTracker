@@ -404,7 +404,7 @@ export default [
     name: "Earth-boring Dung Beetle",
     image: "earth-boring-dung-beetle.png",
     northMonths: [7, 8, 9],
-    southMonth: [1, 2, 3],
+    southMonths: [1, 2, 3],
     activeHours: [
       0,
       1,
