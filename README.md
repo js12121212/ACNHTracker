@@ -6,5 +6,5 @@ This is just a simple project to help me learn React and I happened to be playin
 
 ## To do
 
-Add Error handling
-Look into webpack to combine css
+*Add Error handling
+*Look into webpack to combine css

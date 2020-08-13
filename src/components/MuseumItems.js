@@ -50,12 +50,12 @@ class MuseumItems extends React.Component {
     }
     return data.map((item) => {
       const { timeFilter, month, hour } = this.props.filters;
+      let inMuseum = "";
+      if (this.props.museumItems[item.id] === true) {
+        inMuseum = "owl";
+      }
       if (timeFilter !== "All") {
         if (this.isActiveAtTime(item, month, hour)) {
-          let inMuseum = "";
-          if (this.props.museumItems[item.id] === true) {
-            inMuseum = "owl";
-          }
           return (
             <MuseumItem
               item={item}
@@ -68,7 +68,9 @@ class MuseumItems extends React.Component {
           return false;
         }
       }
-      return <MuseumItem item={item} type={type} key={item.id} />;
+      return (
+        <MuseumItem item={item} type={type} key={item.id} inMuseum={inMuseum} />
+      );
     });
   }
 
