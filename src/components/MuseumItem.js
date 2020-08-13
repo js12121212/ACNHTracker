@@ -75,7 +75,7 @@ class MuseumItem extends React.Component {
       value = false;
     }
     this.saveCookie(id, value);
-    this.props.setMuseumData(id, value);
+    this.props.setMuseumData(id, !value);
     return true;
   }
 
@@ -92,15 +92,12 @@ class MuseumItem extends React.Component {
   }
 
   render() {
-    const { cookies } = this.props;
-    const cookieItems = cookies.get("museumItems");
-
     const item = this.props.item;
     let boundItemClick = this.onClick.bind(this, item);
 
     return (
       <div className="card" key={item.id} onClick={boundItemClick}>
-        <div className={`image ${this.props.type}`}>
+        <div className={`image ${this.props.type} ${this.props.inMuseum}`}>
           <LazyLoad key={item.id} placeholder={<Loading />}>
             <img
               alt={item.name}

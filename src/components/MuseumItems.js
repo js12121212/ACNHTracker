@@ -1,11 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withCookies } from "react-cookie";
+import { fetchMuseumData } from "../actions";
 import MuseumItem from "./MuseumItem";
 import undersea from "../data/undersea.js";
 import fish from "../data/fish.js";
 import bugs from "../data/bugs.js";
 
 class MuseumItems extends React.Component {
+  constructor(props) {
+    super(props);
+    const { cookies } = props;
+  }
+
+  componentDidMount() {
+    const { cookies } = this.props;
+    const cookieItems = cookies.get("museumItems");
+    this.props.fetchMuseumData(cookieItems);
+  }
+
   renderList(type) {
     let data = {};
     switch (type) {
@@ -35,7 +48,18 @@ class MuseumItems extends React.Component {
       const { timeFilter, month, hour } = this.props.filters;
       if (timeFilter !== "All") {
         if (this.isActiveAtTime(item, month, hour)) {
-          return <MuseumItem item={item} type={type} key={item.id} />;
+          let inMuseum = "";
+          if (this.props.museumItems[item.id] === true) {
+            inMuseum = "owl";
+          }
+          return (
+            <MuseumItem
+              item={item}
+              type={type}
+              key={item.id}
+              inMuseum={inMuseum}
+            />
+          );
         } else {
           return false;
         }
@@ -78,6 +102,9 @@ class MuseumItems extends React.Component {
 const mapStateToProps = (state) => {
   return {
     filters: state.filters,
+    museumItems: state.museumItems,
   };
 };
-export default connect(mapStateToProps, null)(MuseumItems);
+export default withCookies(
+  connect(mapStateToProps, { fetchMuseumData })(MuseumItems)
+);

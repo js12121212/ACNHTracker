@@ -38,8 +38,8 @@ export const setMonth = (month) => {
   return { type: SET_MONTH, payload: month };
 };
 
-export const fetchMuseumData = () => {
-  return { type: FETCH_MUSEUM_DATA };
+export const fetchMuseumData = (cookieMuseumItems) => {
+  return { type: FETCH_MUSEUM_DATA, payload: cookieMuseumItems };
 };
 
 export const setMuseumData = (id, value) => {
