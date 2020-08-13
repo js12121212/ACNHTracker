@@ -1,11 +1,17 @@
 import React from "react";
 import LazyLoad from "react-lazy-load";
 import { connect } from "react-redux";
+import { withCookies } from "react-cookie";
 import Loading from "./Loading";
 import MonthDisplay from "./MonthDisplay";
-import { fetchMuseumData } from "../actions";
+import { fetchMuseumData, setMuseumData } from "../actions";
 
 class MuseumItem extends React.Component {
+  constructor(props) {
+    super(props);
+    const { cookies } = props;
+  }
+
   calculateHourString(hour, isEnding = false) {
     var hourString = "";
     if (isEnding) {
@@ -21,6 +27,7 @@ class MuseumItem extends React.Component {
     }
     return hourString;
   }
+
   renderActiveHours(activeHours) {
     var startingHour = activeHours[0];
     var endingHour = activeHours[activeHours.length - 1];
@@ -61,10 +68,38 @@ class MuseumItem extends React.Component {
     );
   }
 
+  onClick(item, e) {
+    let value = false;
+    const id = item.id;
+    if (this.props.museumItems[id]) {
+      value = true;
+    }
+    this.saveCookie(id, value);
+    this.props.setMuseumData(id, value);
+    return true;
+  }
+
+  saveCookie(id, value) {
+    const { cookies } = this.props;
+    const cookieObject = { ...this.props.museumItems, [id]: value };
+    const stringOfMuseumItems = JSON.stringify(cookieObject);
+
+    cookies.set("museumItems", stringOfMuseumItems, {
+      path: "/",
+      sameSite: "Strict",
+      maxAge: 31536000,
+    });
+  }
+
   render() {
+    const { cookies } = this.props;
+    const cookieItems = cookies.get("museumItems");
+
     const item = this.props.item;
+    let boundItemClick = this.onClick.bind(this, item);
+
     return (
-      <div className="card" key={item.id}>
+      <div className="card" key={item.id} onClick={boundItemClick}>
         <div className={`image ${this.props.type}`}>
           <LazyLoad key={item.id} placeholder={<Loading />}>
             <img
@@ -94,8 +129,12 @@ class MuseumItem extends React.Component {
 const mapStateToProps = (state) => {
   return {
     filters: state.filters,
+    museumItems: state.museumItems,
   };
 };
-export default connect(mapStateToProps, {
-  fetchMuseumData,
-})(MuseumItem);
+export default withCookies(
+  connect(mapStateToProps, {
+    fetchMuseumData,
+    setMuseumData,
+  })(MuseumItem)
+);

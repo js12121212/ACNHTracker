@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   bugsFilter: true,
   underseaFilter: true,
   hemisphereFilter: "North",
-  timeFilter: "All",
+  timeFilter: "Now",
   hour: hour,
   month: month,
 };
