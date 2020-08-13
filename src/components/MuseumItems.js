@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { withCookies } from "react-cookie";
 import { fetchMuseumData } from "../actions";
 import MuseumItem from "./MuseumItem";
-import undersea from "../data/undersea.js";
-import fish from "../data/fish.js";
-import bugs from "../data/bugs.js";
+import undersea from "../data/undersea-full.js";
+import fish from "../data/fish-full.js";
+import bugs from "../data/bugs-full.js";
 
 class MuseumItems extends React.Component {
   constructor(props) {
