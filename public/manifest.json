@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ACNH Tracker",
+  "name": "Museum item tracker for Animal Corssing New Horizon",
   "icons": [
     {
       "src": "favicon.ico",
