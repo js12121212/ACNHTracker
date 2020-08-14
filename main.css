@@ -19,3 +19,6 @@
 .ui.cards > .card > .image.owl {
   background: rgba(245, 203, 79, 0.85);
 }
+.ui.cards > .card.hidden {
+  display: none;
+}
