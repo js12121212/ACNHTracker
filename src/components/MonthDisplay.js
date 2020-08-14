@@ -8,13 +8,12 @@ class MonthDisplay extends React.Component {
       return <Loading />;
     }
     return months.map((month) => {
+      let monthClass = "column";
+      if (itemActiveMonths.indexOf(month.id) > -1) {
+        monthClass = "column green";
+      }
       return (
-        <div
-          key={month.id}
-          className={`column ${
-            itemActiveMonths.indexOf(month.id) > -1 ? "green" : ""
-          }`}
-        >
+        <div key={month.id} className={monthClass}>
           {month.name}
         </div>
       );

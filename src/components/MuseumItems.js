@@ -25,24 +25,26 @@ class MuseumItems extends React.Component {
 
   renderList(type) {
     let data = {};
+
+    let dataHidden = true;
     switch (type) {
       case "fish":
         data = fish;
 
-        if (this.props.filters.fishFilter !== true) {
-          return "";
+        if (this.props.filters.fishFilter === true) {
+          dataHidden = false;
         }
         break;
       case "bugs":
         data = bugs;
-        if (this.props.filters.bugsFilter !== true) {
-          return "";
+        if (this.props.filters.bugsFilter === true) {
+          dataHidden = false;
         }
         break;
       case "undersea":
         data = undersea;
-        if (this.props.filters.underseaFilter !== true) {
-          return "";
+        if (this.props.filters.underseaFilter === true) {
+          dataHidden = false;
         }
         break;
       default:
@@ -50,26 +52,30 @@ class MuseumItems extends React.Component {
     }
     return data.map((item) => {
       const { timeFilter, month, hour } = this.props.filters;
+      let hidden = false;
       let inMuseum = "";
+      let cardStyle = "card";
       if (this.props.museumItems[item.id] === true) {
         inMuseum = "owl";
       }
       if (timeFilter !== "All") {
         if (this.isActiveAtTime(item, month, hour)) {
-          return (
-            <MuseumItem
-              item={item}
-              type={type}
-              key={item.id}
-              inMuseum={inMuseum}
-            />
-          );
         } else {
-          return false;
+          hidden = true;
         }
       }
+      if (dataHidden) {
+        hidden = true;
+      }
+      hidden ? (cardStyle = "card hidden") : (cardStyle = "card");
       return (
-        <MuseumItem item={item} type={type} key={item.id} inMuseum={inMuseum} />
+        <MuseumItem
+          item={item}
+          type={type}
+          key={item.id}
+          inMuseum={inMuseum}
+          cardStyle={cardStyle}
+        />
       );
     });
   }

@@ -93,16 +93,19 @@ class MuseumItem extends React.Component {
 
   render() {
     const item = this.props.item;
-    let boundItemClick = this.onClick.bind(this, item);
-
+    const boundItemClick = this.onClick.bind(this, item);
+    const imageStyle = "image " + this.props.type + " " + this.props.inMuseum;
+    const imageURL =
+      process.env.PUBLIC_URL + "/images/" + this.props.type + "/" + item.image;
     return (
-      <div className="card" key={item.id} onClick={boundItemClick}>
-        <div className={`image ${this.props.type} ${this.props.inMuseum}`}>
+      <div
+        className={this.props.cardStyle}
+        key={item.id}
+        onClick={boundItemClick}
+      >
+        <div className={imageStyle}>
           <LazyLoad key={item.id} placeholder={<Loading />}>
-            <img
-              alt={item.name}
-              src={`${process.env.PUBLIC_URL}/images/${this.props.type}/${item.image}`}
-            />
+            <img alt={item.name} src={imageURL} />
           </LazyLoad>
         </div>
         <div className="content">
